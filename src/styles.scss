@@ -1,0 +1,47 @@
+// Theme Variables
+$primary: #0d6efd;
+$secondary: #495057;
+$accent: #0b8f7b;
+$light-bg: #f8f9fa;
+$gradient-hero: linear-gradient(120deg, rgba(13,110,253,0.85), rgba(11,143,123,0.85));
+
+body {
+  font-family: 'Source Sans 3', Arial, sans-serif;
+  color: #212529;
+}
+
+.hero-section {
+  background: $gradient-hero, url('assets/hero-placeholder.svg') center/cover no-repeat;
+  color: #fff;
+  padding: 6rem 0 5rem;
+  position: relative;
+}
+.hero-overlay { background: rgba(0,0,0,0.35); position: absolute; inset: 0; }
+.section-title { font-weight: 600; margin-bottom: 1.25rem; position: relative; }
+.section-title::after { content: ''; width: 60px; height: 3px; background: $accent; display: block; margin-top: .5rem; }
+
+.navbar-custom { backdrop-filter: blur(8px); background: rgba(255,255,255,0.9) !important; }
+.navbar a.nav-link { font-weight: 600; }
+.navbar a.nav-link.active { color: $accent !important; }
+
+.footer { background: #111; color: #ced4da; padding: 2rem 0; }
+.footer a { color: #adb5bd; text-decoration: none; }
+.footer a:hover { color: #fff; }
+
+.card-icon { font-size: 2rem; color: $accent; }
+
+.appointment-form .form-control.ng-invalid.ng-touched { border-color: #dc3545; }
+.appointment-form .form-text.error { color: #dc3545; font-size: .75rem; }
+
+.accordion-button:not(.collapsed) { background-color: rgba(13,110,253,0.1); color: #0d6efd; }
+
+.badge-accent { background: $accent; }
+
+.blog-card { transition: all .25s ease; }
+.blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+.smooth-scroll { scroll-behavior: smooth; }
+
+// Utility overrides
+.btn-accent { background: $accent; color: #fff; }
+.btn-accent:hover { background: darken($accent, 6%); color: #fff; }

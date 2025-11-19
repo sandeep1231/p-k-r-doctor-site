@@ -1,0 +1,38 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-contact-section',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+  <section id="contact" class="py-5 bg-white">
+    <div class="container">
+      <h2 class="section-title">Contact Details</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h5 class="fw-semibold mb-2">Get in Touch</h5>
+          <p class="small mb-2"><span class="fw-semibold">Call / WhatsApp:</span> +91-[Your Number]</p>
+          <p class="small mb-2"><span class="fw-semibold">Email:</span> clinic&#64;domain.com</p>
+          <p class="small mb-3">For emergencies: Please visit the nearest emergency department or CARE Hospitals directly.</p>
+          <div class="d-flex gap-2">
+            <a class="btn btn-primary" href="tel:+91[YourNumber]">Call</a>
+            <a class="btn btn-success" href="https://wa.me/91[YourNumber]" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+        <div class="col-md-6 small">
+          <div class="p-4 bg-light rounded shadow-sm h-100">
+            <h6 class="fw-semibold">Quick Guidance</h6>
+            <ul class="mb-0 ps-3">
+              <li>Non-emergency queries only via WhatsApp.</li>
+              <li>Share clear photos of reports (if asked).</li>
+              <li>Response time may vary during clinic hours.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  `
+})
+export class ContactSectionComponent {}
