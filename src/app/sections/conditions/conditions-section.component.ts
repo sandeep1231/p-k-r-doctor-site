@@ -5,25 +5,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-conditions-section',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <section id="conditions" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="section-title">Conditions Managed</h2>
-        <div class="row">
-          <div class="col-lg-10">
-            <div class="row g-3">
-              <div class="col-sm-6" *ngFor="let cond of conditions">
-                <div class="d-flex align-items-start gap-2">
-                  <span class="badge rounded-pill bg-primary mt-1">{{cond.id}}</span>
-                  <span class="small">{{cond.label}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  `
+  templateUrl: './conditions-section.component.html',
+  styleUrls: ['./conditions-section.component.scss']
 })
 export class ConditionsSectionComponent {
   conditions = [

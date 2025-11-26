@@ -1,0 +1,24 @@
+.blog-card { transition: all .25s ease; }
+.blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+/* Playlist fallback wrapper clickable for mobile fallback */
+.playlist-wrapper { cursor: pointer; position: relative; }
+.playlist-wrapper iframe { pointer-events: auto; }
+.playlist-wrapper::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 70%, rgba(0,0,0,0.15));
+	pointer-events: none;
+}
+
+/* Video thumbnail grid */
+.video-thumb { cursor: pointer; transition: box-shadow .2s, transform .2s; }
+.video-thumb:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+.video-thumb:focus { outline: 2px solid #198754; outline-offset: 2px; }
+.video-thumb img { width: 100%; display: block; }
+
+.selected-video-wrapper iframe { pointer-events: auto; }
+.selected-video-wrapper #selected-video-host { width:100%; height:100%; }
+.selected-video-wrapper .btn { min-width:70px; }
+.infinite-sentinel { width: 100%; height: 24px; }

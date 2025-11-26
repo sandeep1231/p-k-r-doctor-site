@@ -1,0 +1,8 @@
+.hero-section {
+  /* Use absolute path from src for asset so nested SCSS resolves correctly */
+  background: linear-gradient(120deg, rgba(13,110,253,0.85), rgba(11,143,123,0.85)), url('/assets/hero-placeholder.svg') center/cover no-repeat;
+  color: #fff;
+  padding: 6rem 0 5rem;
+  position: relative;
+}
+.hero-overlay { background: rgba(0,0,0,0.35); position: absolute; inset: 0; }

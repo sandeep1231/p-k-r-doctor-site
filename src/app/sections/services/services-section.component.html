@@ -1,0 +1,19 @@
+<section id="services" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Specialities & Services</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4" *ngFor="let svc of services">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <div class="card-icon mb-3">🩺</div>
+            <h5 class="card-title fw-semibold">{{svc.title}}</h5>
+            <p class="card-text small mb-0">{{svc.desc}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-warning mt-4 small" role="alert">
+      <strong>Note:</strong> The clinic is not equipped to handle emergencies. For urgent or life-threatening conditions, please proceed to the nearest emergency department.
+    </div>
+  </div>
+</section>

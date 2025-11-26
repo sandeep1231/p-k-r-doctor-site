@@ -1,0 +1,58 @@
+<section id="appointment" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Appointment Booking</h2>
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate class="appointment-form">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label">Name *</label>
+              <input type="text" formControlName="name" class="form-control" placeholder="Full name">
+              <div class="form-text error" *ngIf="invalid('name')">Required (min 2 chars).</div>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Phone *</label>
+              <input type="tel" formControlName="phone" class="form-control" placeholder="10-digit number">
+              <div class="form-text error" *ngIf="invalid('phone')">Valid Indian phone required.</div>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Date *</label>
+              <input type="date" formControlName="date" class="form-control">
+              <div class="form-text error" *ngIf="invalid('date')">Select a date.</div>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Time *</label>
+              <input type="time" formControlName="time" class="form-control">
+              <div class="form-text error" *ngIf="invalid('time')">Select a time.</div>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Reason for Visit (optional)</label>
+              <textarea rows="3" formControlName="reason" class="form-control" placeholder="Brief description (optional)"></textarea>
+              <div class="form-text" *ngIf="submitted && !form.value.reason">You did not enter a reason. You may send without it.</div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-accent btn-lg px-4" [disabled]="loading">
+                {{ loading ? 'Submitting...' : 'Submit Request' }}
+              </button>
+            </div>
+            <div class="col-12" *ngIf="submitted && form.valid">
+              <div class="alert alert-success py-2 small mb-0">Request received. You will be contacted for confirmation & payment link (for tele-consult).</div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-5">
+        <div class="p-4 bg-light rounded shadow-sm h-100 small">
+          <h5 class="fw-semibold">Tele-Consultation Available</h5>
+          <p class="mb-2">Payment link will be shared after confirmation. Please ensure a stable internet connection.</p>
+          <h6 class="fw-semibold">How to Book</h6>
+          <ol class="mb-0 ps-3">
+            <li>Submit the online form OR message via WhatsApp.</li>
+            <li>Receive confirmation & available slot.</li>
+            <li>Complete payment (if tele-consult).</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

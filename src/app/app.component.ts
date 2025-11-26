@@ -1,17 +1,17 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeroSectionComponent } from './sections/hero-section.component';
-import { AboutSectionComponent } from './sections/about-section.component';
-import { ServicesSectionComponent } from './sections/services-section.component';
-import { ConditionsSectionComponent } from './sections/conditions-section.component';
-import { ExperienceSectionComponent } from './sections/experience-section.component';
-import { ClinicDetailsSectionComponent } from './sections/clinic-details-section.component';
-import { FeesPrepSectionComponent } from './sections/fees-prep-section.component';
-import { AppointmentSectionComponent } from './sections/appointment-section.component';
-import { ContactSectionComponent } from './sections/contact-section.component';
-import { FaqSectionComponent } from './sections/faq-section.component';
-import { PoliciesSectionComponent } from './sections/policies-section.component';
-import { BlogSectionComponent } from './sections/blog-section.component';
+import { HeroSectionComponent } from './sections/hero/hero-section.component';
+import { AboutSectionComponent } from './sections/about/about-section.component';
+import { ServicesSectionComponent } from './sections/services/services-section.component';
+import { ConditionsSectionComponent } from './sections/conditions/conditions-section.component';
+import { ExperienceSectionComponent } from './sections/experience/experience-section.component';
+import { ClinicDetailsSectionComponent } from './sections/clinic-details/clinic-details-section.component';
+import { FeesPrepSectionComponent } from './sections/fees-prep/fees-prep-section.component';
+import { AppointmentSectionComponent } from './sections/appointment/appointment-section.component';
+import { ContactSectionComponent } from './sections/contact/contact-section.component';
+import { FaqSectionComponent } from './sections/faq/faq-section.component';
+import { PoliciesSectionComponent } from './sections/policies/policies-section.component';
+import { BlogSectionComponent } from './sections/blog/blog-section.component';
 
 @Component({
   selector: 'app-root',

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  whatsappNumber: '91XXXXXXXXXX' // Set production number here
+  whatsappNumber: '919338497282' // Country code + number, no plus
 };

@@ -47,6 +47,7 @@ Update these before deployment:
 * Fees: replace `[amount]` in `fees-prep-section.component.ts`.
 * Map: embed Google Map iframe inside the placeholder div. Current embed uses generic Bhubaneswar coordinates—replace with clinic location.
 * Favicon & hero image: place files in `src/assets/` and adjust `index.html` / `styles.scss`.
+* Doctor photo: replace `src/assets/doctor-photo.svg` with a compressed JPG/WEBP (e.g., `doctor-photo.webp` ~60–120KB) and update `about-section.component.ts` image `src`.
 
 ## Form Handling / Backend
 The appointment form currently opens a pre-filled WhatsApp chat using the number from `environment.whatsappNumber` (set in `src/environments/environment.ts` and overridden by `environment.prod.ts` on production builds). Filenames of uploaded reports are included in the message; actual files must be attached manually in WhatsApp (limitation of WhatsApp URL API). Previously, a mock `AppointmentService` stored data in-memory; the admin section has been hidden.

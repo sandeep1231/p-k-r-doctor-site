@@ -37,17 +37,13 @@ import { environment } from '../../environments/environment';
                 <div class="form-text error" *ngIf="invalid('time')">Select a time.</div>
               </div>
               <div class="col-12">
-                <label class="form-label">Reason for Visit *</label>
-                <textarea rows="3" formControlName="reason" class="form-control" placeholder="Brief description"></textarea>
-                <div class="form-text error" *ngIf="invalid('reason')">Please describe reason (min 10 chars).</div>
+                <label class="form-label">Reason for Visit (optional)</label>
+                <textarea rows="3" formControlName="reason" class="form-control" placeholder="Brief description (optional)"></textarea>
+                <div class="form-text" *ngIf="submitted && !form.value.reason">You did not enter a reason. You may send without it.</div>
               </div>
+              
               <div class="col-12">
-                <label class="form-label">Upload Reports (optional)</label>
-                <input type="file" (change)="handleFiles($event)" class="form-control" multiple>
-                <div class="form-text">PDF / images for reference only.</div>
-              </div>
-              <div class="col-12">
-                <button class="btn btn-accent btn-lg px-4" [disabled]="form.invalid || loading">
+                <button type="submit" class="btn btn-accent btn-lg px-4" [disabled]="loading">
                   {{ loading ? 'Submitting...' : 'Submit Request' }}
                 </button>
               </div>
@@ -77,7 +73,6 @@ import { environment } from '../../environments/environment';
 export class AppointmentSectionComponent {
   loading = false;
   submitted = false;
-  uploadedFiles: File[] = [];
   form!: FormGroup;
   constructor(private fb: FormBuilder) {}
   ngOnInit() {
@@ -86,29 +81,23 @@ export class AppointmentSectionComponent {
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       date: ['', Validators.required],
       time: ['', Validators.required],
-      reason: ['', [Validators.required, Validators.minLength(10)]],
+      reason: [''],
     });
   }
   invalid(control: string) {
     const c = this.form.get(control);
     return !!(c && c.invalid && (c.touched || this.submitted));
   }
-  handleFiles(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files) this.uploadedFiles = Array.from(input.files);
-  }
   submit() {
     this.submitted = true;
     if (this.form.invalid) return;
     this.loading = true;
     const { name, phone, date, time, reason } = this.form.value;
-    const files = this.uploadedFiles.map(f => f.name).join(', ');
-    // Build WhatsApp message (attachments cannot be auto-sent; filenames included for reference)
-    const message = `Appointment Request%0AName: ${encodeURIComponent(name!)}%0APhone: ${encodeURIComponent(phone!)}%0ADate: ${encodeURIComponent(date!)}%0ATime: ${encodeURIComponent(time!)}%0AReason: ${encodeURIComponent(reason!)}${files ? '%0AFiles: ' + encodeURIComponent(files) : ''}%0A(Note: Please attach the reports in WhatsApp after this message.)`;
+    const reasonText = reason ? reason : 'Not provided';
+    const message = `Appointment Request%0AName: ${encodeURIComponent(name!)}%0APhone: ${encodeURIComponent(phone!)}%0ADate: ${encodeURIComponent(date!)}%0ATime: ${encodeURIComponent(time!)}%0AReason: ${encodeURIComponent(reasonText)}`;
     const url = `https://wa.me/${environment.whatsappNumber}?text=${message}`;
     window.open(url, '_blank');
     this.loading = false;
     this.form.reset();
-    this.uploadedFiles = [];
   }
 }
