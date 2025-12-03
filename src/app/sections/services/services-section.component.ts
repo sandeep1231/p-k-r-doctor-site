@@ -16,6 +16,7 @@ export class ServicesSectionComponent {
     { title: 'Post-ICU / post-hospitalisation recovery guidance', desc: 'Holistic transition back to daily life.' },
     { title: 'Cardiac risk & preventive counselling', desc: 'Assess risks and build preventive strategies.' },
     { title: 'Vaccination counselling (adult vaccines)', desc: 'Evidence-based immunisation guidance.' },
-    { title: 'Lifestyle & diet modification support', desc: 'Practical changes for long-term health.' }
+    { title: 'Lifestyle & diet modification support', desc: 'Practical changes for long-term health.' },
+    { title: 'All Blood Tests Available', desc: 'Comprehensive laboratory testing done here with trusted partners.' }
   ];
 }
