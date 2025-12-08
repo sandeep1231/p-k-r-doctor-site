@@ -12,6 +12,7 @@ import { ContactSectionComponent } from './sections/contact/contact-section.comp
 import { FaqSectionComponent } from './sections/faq/faq-section.component';
 import { PoliciesSectionComponent } from './sections/policies/policies-section.component';
 import { BlogSectionComponent } from './sections/blog/blog-section.component';
+import { ReviewsSectionComponent } from './sections/reviews/reviews-section.component';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,8 @@ import { BlogSectionComponent } from './sections/blog/blog-section.component';
     ContactSectionComponent,
     FaqSectionComponent,
     PoliciesSectionComponent,
-    BlogSectionComponent
+    BlogSectionComponent,
+    ReviewsSectionComponent
   ],
   template: `
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top shadow-sm">
@@ -67,6 +69,7 @@ import { BlogSectionComponent } from './sections/blog/blog-section.component';
       <app-faq-section></app-faq-section>
       <app-policies-section></app-policies-section>
       <app-blog-section></app-blog-section>
+      <app-reviews-section></app-reviews-section>
       <app-contact-section></app-contact-section>
     </div>
 

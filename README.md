@@ -1,3 +1,67 @@
+# Doctor Site - Reviews (Realtime Database)
+
+This project uses Firebase **Realtime Database** (Spark free tier) to store patient reviews.
+
+## Firebase Setup
+
+1. In Firebase Console, open your project.
+2. Go to Build → Realtime Database → Create database.
+3. Choose location, start in **Locked mode**.
+4. Copy your Database URL (looks like `https://<project-id>-default-rtdb.firebaseio.com`).
+5. Ensure `src/environments/environment.ts` and `environment.prod.ts` include:
+
+```ts
+firebase: {
+	apiKey: "...",
+	authDomain: "...",
+	projectId: "...",
+	appId: "...",
+	storageBucket: "...",
+	messagingSenderId: "...",
+	measurementId: "...",
+	databaseURL: "https://<project-id>-default-rtdb.firebaseio.com"
+}
+```
+
+## Security Rules
+
+Set rules to allow reading for everyone and writing only when fields are valid:
+
+```json
+{
+	"rules": {
+		".read": true,
+		"reviews": {
+			".indexOn": ["createdAt"],
+			"$id": {
+				".write": true,
+				"name": { ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 100" },
+				"rating": { ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5" },
+				"comment": { ".validate": "newData.isString() && newData.val().length >= 10 && newData.val().length <= 1000" },
+				"createdAt": { ".validate": "newData.isNumber()" }
+			}
+		}
+	}
+}
+```
+
+## Local Development
+
+```powershell
+Push-Location "d:\\Doctor-site"
+npm install
+npm start
+Pop-Location
+```
+
+- Open `http://localhost:4200`.
+- Submit a review in the Reviews section.
+- Check Firebase Console → Realtime Database → `reviews` for new entries.
+
+## Notes
+- Reviews are stored under `reviews/{autoId}` with `createdAt` server timestamp.
+- The list shows the newest reviews first.
+- No billing required on Spark free tier.
 # Shree Radha Clinic Website (Angular + Bootstrap)
 
 Professional single-page site for **Dr. Pragyan Kumar Routray** – Internal Medicine & Critical Care Physician.

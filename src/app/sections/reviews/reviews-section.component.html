@@ -1,0 +1,73 @@
+<section id="reviews" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Patient Reviews</h2>
+
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-6">
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate class="review-form card shadow-sm">
+          <div class="card-body">
+            <h5 class="fw-semibold mb-3">Share your experience</h5>
+            <div *ngIf="successMsg" class="alert alert-success" role="alert">{{successMsg}}</div>
+            <div class="mb-3">
+              <label class="form-label">Name *</label>
+              <input type="text" formControlName="name" class="form-control" placeholder="Your name">
+              <div class="form-text error" *ngIf="invalid('name')">Please enter at least 1 character.</div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Rating *</label>
+              <div class="rating" role="radiogroup" aria-label="Rating">
+                <ng-container *ngFor="let r of [1,2,3,4,5]">
+                  <input type="radio" [id]="'star-'+r" formControlName="rating" [value]="r" />
+                  <label [for]="'star-'+r" [class.active]="r <= (form.get('rating')?.value || 0)" [attr.aria-label]="r + ' star'">★</label>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Review *</label>
+              <textarea rows="4" formControlName="comment" class="form-control" placeholder="Write a few lines about your visit"></textarea>
+              <div class="form-text error" *ngIf="invalid('comment')">Please write at least 1 character.</div>
+            </div>
+
+            <button type="submit" class="btn btn-accent">Submit Review</button>
+            
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="reviews-list">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="mb-0">Recent Reviews</h6>
+            <span class="badge bg-secondary">Total: {{totalCount}}</span>
+          </div>
+          <div class="rating-breakdown mb-3">
+            <div *ngFor="let r of [5,4,3,2,1]" class="d-flex align-items-center mb-1">
+              <div class="rating-label me-2">{{r}}★</div>
+              <div class="rating-bar flex-grow-1 me-2" aria-hidden="true">
+                <div class="rating-fill" [style.width.%]="ratingPercents[r]"></div>
+              </div>
+              <span class="badge bg-light text-dark small">{{ratingCounts[r]}}</span>
+            </div>
+          </div>
+          <div *ngFor="let rv of reviews" class="card shadow-sm mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <strong>{{rv.name}}</strong>
+                <div class="text-warning">
+                  <span *ngFor="let _ of stars(rv.rating)">★</span>
+                </div>
+              </div>
+              <p class="mb-2 small">{{rv.comment}}</p>
+              <div class="text-muted xsmall">{{rv.date | date:'medium'}}</div>
+            </div>
+          </div>
+          <div class="text-center" *ngIf="reviews.length < totalCount">
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="showMore()">Show more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+.review-form .error { color: #dc3545; }
+.rating { display: inline-flex; gap: 8px; align-items: center; }
+.rating input { position: absolute; left: -9999px; }
+.rating label { font-size: 28px; line-height: 1; cursor: pointer; color: #ccc; transition: color .15s ease-in-out; }
+.rating label.active { color: #f5b301; }
+.rating label:focus { outline: 2px solid #86b7fe; outline-offset: 2px; }
+.xsmall { font-size: 12px; }
+.reviews-list { max-height: 520px; overflow-y: auto; padding-right: 4px; }
+.reviews-list::-webkit-scrollbar { width: 8px; }
+.reviews-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
+
+.rating-breakdown { max-width: 320px; }
+.rating-breakdown .rating-label { width: 36px; text-align: right; font-weight: 600; color: #333; }
+.rating-breakdown .rating-bar { height: 10px; background: #f1f1f1; border-radius: 6px; overflow: hidden; }
+.rating-breakdown .rating-fill { height: 100%; background: linear-gradient(90deg,#f5b301,#ffb84d); border-radius: 6px 0 0 6px; transition: width .35s ease; }
+.rating-breakdown .badge { min-width: 36px; }
