@@ -16,6 +16,20 @@
               <div class="form-text error" *ngIf="invalid('phone')">Valid Indian phone required.</div>
             </div>
             <div class="col-sm-6">
+              <label class="form-label">Age *</label>
+              <input type="number" formControlName="age" class="form-control" placeholder="Age" min="0" max="120">
+              <div class="form-text error" *ngIf="invalid('age')">Enter valid age (0-120).</div>
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">Sex *</label>
+              <select formControlName="sex" class="form-select">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <div class="form-text error" *ngIf="invalid('sex')">Please select sex.</div>
+            </div>
+            <div class="col-sm-6">
               <label class="form-label">Date *</label>
               <input type="date" formControlName="date" class="form-control">
               <div class="form-text error" *ngIf="invalid('date')">Select a date.</div>

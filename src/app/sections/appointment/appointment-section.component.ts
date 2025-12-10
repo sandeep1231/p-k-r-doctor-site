@@ -19,8 +19,10 @@ export class AppointmentSectionComponent {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       phone: ['', [Validators.required, Validators.pattern(/^(?:\+?91)?\d{10}$/)]],
+      age: [null, [Validators.required, Validators.min(0), Validators.max(120)]],
       date: ['', Validators.required],
       time: ['', Validators.required],
+      sex: ['Male', [Validators.required]],
       reason: [''],
     });
   }
@@ -32,12 +34,12 @@ export class AppointmentSectionComponent {
     this.submitted = true;
     if (this.form.invalid) return;
     this.loading = true;
-    const { name, phone, date, time, reason } = this.form.value;
+    const { name, phone, date, time, reason, age, sex } = this.form.value;
     const reasonText = reason ? reason : 'Not provided';
-    const message = `Appointment Request%0AName: ${encodeURIComponent(name!)}%0APhone: ${encodeURIComponent(phone!)}%0ADate: ${encodeURIComponent(date!)}%0ATime: ${encodeURIComponent(time!)}%0AReason: ${encodeURIComponent(reasonText)}`;
+    const message = `Appointment Request%0AName: ${encodeURIComponent(name!)}%0APhone: ${encodeURIComponent(phone!)}%0AAge: ${encodeURIComponent(String(age))}%0ASex: ${encodeURIComponent(sex)}%0ADate: ${encodeURIComponent(date!)}%0ATime: ${encodeURIComponent(time!)}%0AReason: ${encodeURIComponent(reasonText)}`;
     const url = `https://wa.me/${environment.whatsappNumber}?text=${message}`;
     window.open(url, '_blank');
     this.loading = false;
-    this.form.reset();
+    this.form.reset({ name: '', phone: '', age: null, date: '', time: '', sex: 'Male', reason: '' });
   }
 }
