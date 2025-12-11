@@ -1,0 +1,51 @@
+<section id="gallery" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Inside Shree Radha Clinic</h2>
+    <p class="mb-4">A peek at our facilities and care spaces.</p>
+
+    <!-- Featured carousel (modern hero) -->
+    <div *ngIf="featured.length" id="clinicGalleryCarousel" class="carousel slide mb-4 gallery-carousel" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="hover">
+      <div class="carousel-indicators">
+        <button *ngFor="let f of featured; let i = index" type="button" data-bs-target="#clinicGalleryCarousel" [attr.data-bs-slide-to]="i" [class.active]="i===0" [attr.aria-current]="i===0? 'true' : null" [attr.aria-label]="'Slide ' + (i+1)"></button>
+      </div>
+      <div class="carousel-inner rounded-3 overflow-hidden">
+        <div *ngFor="let f of featured; let i = index" class="carousel-item" [class.active]="i===0">
+          <img [src]="f.src" [alt]="f.alt" class="d-block w-100 carousel-img" loading="lazy" (click)="open(f)" role="button" />
+          <div class="carousel-caption d-none d-md-block text-start">
+            
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#clinicGalleryCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#clinicGalleryCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Grid gallery -->
+    <!--<div class="row g-3 gallery-grid">
+      <div class="col-6 col-md-4" *ngFor="let img of images">
+        <div class="card gallery-card" (click)="open(img)" role="button" tabindex="0" (keyup.enter)="open(img)">
+          <img [src]="img.src" [alt]="img.alt" class="card-img-top" loading="lazy" />
+        </div>
+      </div>
+    </div>-->
+
+
+    <!-- Lightbox modal -->
+    <div class="gallery-lightbox" *ngIf="activeImage" (click)="close()">
+      <div class="lightbox-content" (click)="$event.stopPropagation()">
+        <button class="btn-close btn-close-white ms-auto" aria-label="Close" (click)="close()"></button>
+        <img [src]="activeImage.src" [alt]="activeImage.alt" class="lightbox-img" />
+        <div class="lightbox-controls mt-3 d-flex justify-content-between">
+          <button class="btn btn-outline-light" (click)="prev()">Prev</button>
+          <button class="btn btn-outline-light" (click)="next()">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

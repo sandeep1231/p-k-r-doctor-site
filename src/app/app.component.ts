@@ -13,6 +13,7 @@ import { FaqSectionComponent } from './sections/faq/faq-section.component';
 import { PoliciesSectionComponent } from './sections/policies/policies-section.component';
 import { BlogSectionComponent } from './sections/blog/blog-section.component';
 import { ReviewsSectionComponent } from './sections/reviews/reviews-section.component';
+import { GallerySectionComponent } from './sections/gallery/gallery-section.component';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { ReviewsSectionComponent } from './sections/reviews/reviews-section.comp
     HeroSectionComponent,
     AboutSectionComponent,
     ServicesSectionComponent,
+      GallerySectionComponent,
     ConditionsSectionComponent,
     ExperienceSectionComponent,
     ClinicDetailsSectionComponent,
@@ -61,6 +63,7 @@ import { ReviewsSectionComponent } from './sections/reviews/reviews-section.comp
       <app-hero-section></app-hero-section>
       <app-about-section></app-about-section>
       <app-services-section></app-services-section>
+      <app-gallery-section></app-gallery-section>
       <app-conditions-section></app-conditions-section>
       <app-experience-section></app-experience-section>
       <app-clinic-details-section></app-clinic-details-section>
