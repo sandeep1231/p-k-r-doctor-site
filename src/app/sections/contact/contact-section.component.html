@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="section-title">Contact Details</h2>
     <div class="row g-4">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <h5 class="fw-semibold mb-2">Get in Touch</h5>
         <p class="small mb-2"><span class="fw-semibold">Call / WhatsApp:</span> +91 9338497282/+91 9437260194</p>
         <p class="small mb-3">For emergencies: Please visit the nearest emergency department or CARE Hospitals directly.</p>
@@ -13,7 +13,7 @@
           <button *ngIf="canShare" class="btn btn-outline-secondary" (click)="shareClinic()">Share</button>
         </div>
       </div>
-      <div class="col-md-6 small">
+      <div class="col-md-4 small">
         <div class="p-4 bg-light rounded shadow-sm h-100">
           <h6 class="fw-semibold">Quick Guidance</h6>
           <ul class="mb-0 ps-3">
@@ -21,6 +21,17 @@
             <li>Share clear photos of reports (if asked).</li>
             <li>Response time may vary during clinic hours.</li>
           </ul>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="qr-card text-center p-3 bg-light rounded shadow-sm h-100">
+          <p class="fw-semibold mb-2 small">Scan to visit website</p>
+          <img src="assets/qr-code.svg" alt="QR Code - Visit drpragyankumarroutray.com" class="qr-img mb-2" />
+          <p class="text-muted mb-2" style="font-size: 0.72rem;">drpragyankumarroutray.com</p>
+          <div class="d-flex justify-content-center gap-2">
+            <a href="assets/qr-code.svg" download="Shree-Radha-Clinic-QR.svg" class="btn btn-outline-primary btn-sm">Download</a>
+            <button *ngIf="canShare" class="btn btn-outline-secondary btn-sm" (click)="shareQR()">Share</button>
+          </div>
         </div>
       </div>
     </div>

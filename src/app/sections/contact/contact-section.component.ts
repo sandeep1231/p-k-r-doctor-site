@@ -18,9 +18,31 @@ export class ContactSectionComponent {
       await navigator.share({
         title: 'Shree Radha Clinic',
         text: 'Book an appointment with Dr. Pragyan Kumar Routray — Expert in Internal Medicine & Critical Care.',
-        url: 'https://www.shreeradhaclinic.in/'
+        url: 'https://drpragyankumarroutray.com/'
       });
     } catch {}
+  }
+
+  async shareQR() {
+    try {
+      const res = await fetch('assets/qr-code.svg');
+      const blob = await res.blob();
+      const file = new File([blob], 'Shree-Radha-Clinic-QR.svg', { type: 'image/svg+xml' });
+      await navigator.share({
+        title: 'Shree Radha Clinic QR Code',
+        text: 'Scan this QR code to visit Dr. Pragyan Kumar Routray\'s clinic website.',
+        files: [file]
+      });
+    } catch {
+      // Fallback: share URL if file sharing not supported
+      try {
+        await navigator.share({
+          title: 'Shree Radha Clinic',
+          text: 'Visit Dr. Pragyan Kumar Routray\'s clinic website:',
+          url: 'https://drpragyankumarroutray.com/'
+        });
+      } catch {}
+    }
   }
   clinicPlaceId = CLINIC_PLACE_ID;
   get hasRealPlaceId(): boolean {

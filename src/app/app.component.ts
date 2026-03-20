@@ -60,9 +60,11 @@ import { SectionDotsComponent } from './sections/section-dots/section-dots.compo
     <app-section-dots></app-section-dots>
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top shadow-sm" [class.navbar--hidden]="navbarHidden">
       <div class="container">
-        <a class="navbar-brand" href="#hero" [class.active]="activeSection==='hero'">
+        <a class="navbar-brand" href="#hero" [class.active]="activeSection==='hero'" (click)="handleNavClick($event)">
           <img src="assets/logo-shree-radha.svg" alt="Shree Radha Clinic" class="navbar-logo" />
         </a>
+        <a class="nav-link-review nav-link-review--mobile d-lg-none" [class.active]="activeSection==='reviews'" href="#reviews" (click)="handleNavClick($event)">✍ Review</a>
+        <app-dark-mode-toggle class="d-lg-none me-2"></app-dark-mode-toggle>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -78,9 +80,9 @@ import { SectionDotsComponent } from './sections/section-dots/section-dots.compo
             <li class="nav-item"><a class="nav-link" [class.active]="activeSection==='faq'" [attr.aria-current]="activeSection==='faq' ? 'page' : null" href="#faq">FAQs</a></li>
             <li class="nav-item"><a class="nav-link" [class.active]="activeSection==='blog'" [attr.aria-current]="activeSection==='blog' ? 'page' : null" href="#blog">Blog</a></li>
             <li class="nav-item"><a class="nav-link" [class.active]="activeSection==='contact'" [attr.aria-current]="activeSection==='contact' ? 'page' : null" href="#contact">Contact</a></li>
+            <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-review" [class.active]="activeSection==='reviews'" href="#reviews">✍ Review</a></li>
           </ul>
           <app-dark-mode-toggle class="ms-2 d-none d-lg-block"></app-dark-mode-toggle>
-          <app-dark-mode-toggle class="mt-2 mb-1 d-lg-none"></app-dark-mode-toggle>
         </div>
       </div>
     </nav>
@@ -135,7 +137,7 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const sectionIds = [
-      'hero','about','services','conditions','experience','clinic','fees','appointment','faq','policies','blog','contact'
+      'hero','about','services','conditions','experience','clinic','fees','appointment','faq','policies','blog','reviews','contact'
     ];
     const observer = new IntersectionObserver(entries => {
       // Collect intersecting entries

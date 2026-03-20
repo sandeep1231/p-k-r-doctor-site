@@ -1,1 +1,11 @@
-/* Placeholder for contact styles */
+/* QR code card */
+.qr-img {
+  width: 140px;
+  height: 140px;
+  display: block;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .qr-img { width: 120px; height: 120px; }
+  .qr-card { margin-top: 0.5rem; }
+}
