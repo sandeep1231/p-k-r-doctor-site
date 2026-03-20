@@ -88,15 +88,25 @@ export class ChatbotComponent implements AfterViewChecked {
     this.shouldScroll = true;
     this.isTyping = true;
 
-    setTimeout(() => {
-      this.isTyping = false;
-      const rule = this.chatService.findAnswer(input);
-      if (rule) {
+    // Try rule-based first
+    const rule = this.chatService.findAnswer(input);
+    if (rule) {
+      setTimeout(() => {
+        this.isTyping = false;
         this.addBotMessage(rule.answer, rule.action);
+      }, 500);
+      return;
+    }
+
+    // Fallback to Gemini AI
+    this.chatService.askGemini(input).then(aiReply => {
+      this.isTyping = false;
+      if (aiReply) {
+        this.addBotMessage(aiReply);
       } else {
         this.addBotMessage(this.chatService.getFallbackMessage(), 'open-whatsapp');
       }
-    }, 600);
+    });
   }
 
   handleQuickReply(rule: ChatbotRule) {

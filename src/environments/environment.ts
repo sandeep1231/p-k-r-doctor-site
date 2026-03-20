@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   whatsappNumber: '919338497282', // Country code + number, no plus
+  geminiApiKey: 'AIzaSyDCVUkaeH4RXYQXcIXdgPMl89AHE7mQq4c', // Get free key from https://aistudio.google.com/apikey
   firebase: {
     apiKey: 'AIzaSyB8F4JF61jy8w9ceXrF8pdTbr9x2XR6gng',
     authDomain: 'my-project-c2a52.firebaseapp.com',

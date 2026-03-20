@@ -63,6 +63,107 @@ export const CHATBOT_RULES: ChatbotRule[] = [
 
   // Non-quick-reply rules (matched by keyword only)
   {
+    keywords: ['who are you', 'what are you', 'your name', 'which bot', 'chatbot', 'are you a bot', 'are you human', 'are you real'],
+    answer: `I'm the Shree Radha Clinic virtual assistant 🤖. I can help you with clinic timings, booking appointments, fees, services, directions, and other common questions. For anything else, you can reach us on WhatsApp!`,
+    category: 'identity'
+  },
+  {
+    keywords: ['hello', 'hi', 'hey', 'good morning', 'good evening', 'good afternoon', 'howdy', 'namaste', 'namaskar'],
+    answer: `Hello! 👋 Welcome to Shree Radha Clinic. How can I help you today? You can ask about timings, fees, services, appointments, or anything else!`,
+    category: 'greeting'
+  },
+  {
+    keywords: ['thank', 'thanks', 'thank you', 'thankyou', 'dhanyabad', 'dhanyavaad'],
+    answer: `You're welcome! 😊 Feel free to ask if you need anything else. Wishing you good health!`,
+    category: 'thanks'
+  },
+  {
+    keywords: ['bye', 'goodbye', 'good bye', 'see you', 'take care', 'tata'],
+    answer: `Goodbye! 👋 Take care and stay healthy. We're here whenever you need us!`,
+    category: 'bye'
+  },
+  {
+    keywords: ['help', 'what can you do', 'how can you help', 'options', 'menu', 'what do you know', 'assist'],
+    answer: `I can help you with:\n• 🕐 Clinic timings & schedule\n• 💰 Consultation fees\n• 📋 Services & specialities\n• 📍 Clinic location & directions\n• 📅 Booking appointments\n• 👨‍⚕️ About the doctor\n• 💊 Conditions we treat\n• 📞 Contact details\n\nJust type your question or tap a quick reply below!`,
+    category: 'help'
+  },
+  {
+    keywords: ['how are you', 'how r u', 'hows it going', 'how do you do', 'whats up', 'wassup', 'sup'],
+    answer: `I'm doing great, thank you for asking! 😊 How can I assist you today?`,
+    category: 'greeting'
+  },
+  {
+    keywords: ['insurance', 'cashless', 'mediclaim', 'claim', 'health insurance', 'covered'],
+    answer: `Currently, we accept direct payment (Cash, UPI, Card). For insurance claims, you may submit the consultation receipt to your insurer for reimbursement. Please check with your insurance provider for coverage details.`,
+    category: 'fees'
+  },
+  {
+    keywords: ['parking', 'park', 'bike', 'car parking', 'two wheeler'],
+    answer: `Yes, parking space is available near the clinic building for both two-wheelers and cars.`,
+    category: 'location'
+  },
+  {
+    keywords: ['age', 'child', 'children', 'kid', 'kids', 'paediatric', 'pediatric', 'baby', 'infant'],
+    answer: `Shree Radha Clinic specialises in adult internal medicine. For children (paediatric patients), we recommend consulting a paediatrician. We can help refer you if needed.`,
+    category: 'faq'
+  },
+  {
+    keywords: ['covid', 'corona', 'rt-pcr', 'rtpcr', 'rapid test', 'corona test'],
+    answer: `We can evaluate COVID symptoms and provide consultation. RT-PCR and rapid tests can be arranged through our lab partners. Please wear a mask during your visit.`,
+    category: 'conditions'
+  },
+  {
+    keywords: ['diet', 'nutrition', 'food', 'weight', 'obesity', 'overweight', 'bmi'],
+    answer: `Yes, Dr. Routray provides lifestyle and diet modification counselling as part of holistic care, including weight management and nutrition guidance.`,
+    action: 'scroll-to-services',
+    category: 'services'
+  },
+  {
+    keywords: ['thyroid', 'hypothyroid', 'hyperthyroid'],
+    answer: `Yes, we diagnose and manage thyroid disorders including hypothyroidism and hyperthyroidism with regular monitoring and medication optimisation.`,
+    category: 'conditions'
+  },
+  {
+    keywords: ['kidney', 'renal', 'creatinine', 'urine'],
+    answer: `We evaluate kidney function, manage early kidney disease, and provide referrals to nephrologists when needed. Blood and urine tests are available.`,
+    category: 'conditions'
+  },
+  {
+    keywords: ['liver', 'jaundice', 'hepatitis', 'fatty liver'],
+    answer: `We assess and manage liver conditions including fatty liver, jaundice, and hepatitis with appropriate investigations and treatment plans.`,
+    category: 'conditions'
+  },
+  {
+    keywords: ['headache', 'migraine', 'dizziness', 'vertigo', 'giddiness'],
+    answer: `We evaluate and treat headaches, migraines, dizziness, and vertigo. Persistent symptoms may need further investigation which we can arrange.`,
+    category: 'conditions'
+  },
+  {
+    keywords: ['joint', 'arthritis', 'joint pain', 'body pain', 'muscle pain', 'back pain'],
+    answer: `We can evaluate joint pain, body aches, and arthritis symptoms. Treatment includes medication and lifestyle advice, with referral to a specialist if needed.`,
+    category: 'conditions'
+  },
+  {
+    keywords: ['anxiety', 'stress', 'depression', 'sleep', 'insomnia', 'mental health', 'tension'],
+    answer: `We provide initial assessment for stress, anxiety, sleep issues, and general mental health concerns. Specialised psychiatric referral can be arranged if needed.`,
+    category: 'conditions'
+  },
+  {
+    keywords: ['gastric', 'acidity', 'stomach', 'digestion', 'ulcer', 'ibs', 'constipation', 'bloating', 'gas'],
+    answer: `We treat digestive issues including acidity, gastritis, IBS, constipation, and bloating with medication and dietary guidance.`,
+    category: 'conditions'
+  },
+  {
+    keywords: ['allergy', 'skin', 'rash', 'itching', 'urticaria'],
+    answer: `We can evaluate and treat common allergies and skin reactions. For persistent dermatological conditions, we may refer to a dermatologist.`,
+    category: 'conditions'
+  },
+  {
+    keywords: ['website', 'site', 'app', 'made by', 'developed', 'developer'],
+    answer: `This website was built for Shree Radha Clinic to help patients access information and book appointments easily. For website-related queries, please contact us on WhatsApp.`,
+    category: 'meta'
+  },
+  {
     keywords: ['tele', 'teleconsult', 'teleconsultation', 'online', 'video', 'virtual'],
     answer: `Yes, tele-consultation is available for follow-ups and non-emergency issues. Payment link will be shared after confirmation. Please ensure a stable internet connection.`,
     category: 'teleconsult'
@@ -153,4 +254,4 @@ export const CHATBOT_RULES: ChatbotRule[] = [
 ];
 
 export const GREETING_MESSAGE = `Hello! 👋 I'm the Shree Radha Clinic assistant. How can I help you today?`;
-export const FALLBACK_MESSAGE = `I'm sorry, I couldn't find an answer to that. Would you like to message us on WhatsApp for personalised assistance?`;
+export const FALLBACK_MESSAGE = `I'm not sure about that one. Here are some things I can help with:\n• Clinic timings & schedule\n• Consultation fees\n• Booking appointments\n• Services & conditions treated\n• Doctor information\n• Clinic location\n\nOr you can message us on WhatsApp for personalised assistance! 💬`;

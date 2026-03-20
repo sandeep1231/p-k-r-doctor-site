@@ -1,20 +1,55 @@
 import { Injectable } from '@angular/core';
 import { CHATBOT_RULES, CLINIC_HOURS, GREETING_MESSAGE, FALLBACK_MESSAGE, ChatbotRule } from './chatbot-knowledge';
+import { GeminiService } from './gemini.service';
 
 @Injectable({ providedIn: 'root' })
 export class ChatbotService {
 
+  constructor(private gemini: GeminiService) {}
+
+  // Synonym map for normalization
+  private synonyms: Record<string, string> = {
+    'dr': 'doctor', 'doc': 'doctor', 'physician': 'doctor',
+    'appt': 'appointment', 'apt': 'appointment',
+    'mon': 'monday', 'tue': 'tuesday', 'wed': 'wednesday',
+    'thu': 'thursday', 'fri': 'friday', 'sat': 'saturday', 'sun': 'sunday',
+    'rs': 'fee', 'rupees': 'fee', 'rupee': 'fee', 'charges': 'charge',
+    'consult': 'consultation', 'checkup': 'consultation', 'check-up': 'consultation',
+    'addr': 'address', 'loc': 'location', 'dir': 'direction',
+    'msg': 'message', 'wp': 'whatsapp', 'wa': 'whatsapp',
+    'no': 'number', 'ph': 'phone', 'mob': 'phone', 'mobile': 'phone',
+    'u': 'you', 'r': 'are', 'ur': 'your', 'pls': 'please', 'plz': 'please',
+    'info': 'information', 'abt': 'about',
+    'thnx': 'thanks', 'thx': 'thanks', 'ty': 'thanks',
+  };
+
+  private normalize(input: string): string {
+    return input.toLowerCase().trim()
+      .replace(/[?!.,;:]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .split(' ')
+      .map(w => this.synonyms[w] || w)
+      .join(' ')
+      .trim();
+  }
+
   findAnswer(input: string): ChatbotRule | null {
-    const lower = input.toLowerCase().trim();
+    const lower = this.normalize(input);
     if (!lower) return null;
 
     let bestMatch: ChatbotRule | null = null;
-    let bestCount = 0;
+    let bestScore = 0;
 
     for (const rule of CHATBOT_RULES) {
-      const matchCount = rule.keywords.filter(kw => lower.includes(kw)).length;
-      if (matchCount > bestCount) {
-        bestCount = matchCount;
+      let score = 0;
+      for (const kw of rule.keywords) {
+        if (lower.includes(kw)) {
+          // Multi-word phrases get higher weight
+          score += kw.split(' ').length;
+        }
+      }
+      if (score > bestScore) {
+        bestScore = score;
         bestMatch = rule;
       }
     }
@@ -62,5 +97,13 @@ export class ChatbotService {
 
   getFallbackMessage(): string {
     return FALLBACK_MESSAGE;
+  }
+
+  async askGemini(input: string): Promise<string | null> {
+    return this.gemini.ask(input);
+  }
+
+  resetGeminiConversation() {
+    this.gemini.resetConversation();
   }
 }
