@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.shreeradhaclinic.in/assets/sitemap.xml

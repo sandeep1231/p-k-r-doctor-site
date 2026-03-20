@@ -1,4 +1,4 @@
-<section id="contact" class="py-5 bg-white">
+<section id="contact" class="py-5 bg-white" appScrollReveal>
   <div class="container">
     <h2 class="section-title">Contact Details</h2>
     <div class="row g-4">
@@ -10,6 +10,7 @@
           <a class="btn btn-primary" href="tel:+919338497282">Call</a>
           <a class="btn btn-success" href="https://wa.me/919338497282" target="_blank" rel="noopener">WhatsApp</a>
           <a class="btn btn-outline-primary" [href]="directionsUrl" target="_blank" rel="noopener">Directions</a>
+          <button *ngIf="canShare" class="btn btn-outline-secondary" (click)="shareClinic()">Share</button>
         </div>
       </div>
       <div class="col-md-6 small">

@@ -1,1 +1,15 @@
 .card-icon { font-size: 2rem; color: #0b8f7b; }
+
+// 3D tilt hover on service cards
+:host .card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+@media (min-width: 769px) {
+  :host .card:hover {
+    transform: rotateY(-3deg) rotateX(2deg) translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+}
+@media (max-width: 768px) {
+  :host .card:hover { transform: translateY(-4px); }
+}

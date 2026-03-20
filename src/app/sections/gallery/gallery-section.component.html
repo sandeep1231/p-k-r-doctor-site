@@ -1,4 +1,4 @@
-<section id="gallery" class="py-5">
+<section id="gallery" class="py-5" appScrollReveal>
   <div class="container">
     <h2 class="section-title">Inside Shree Radha Clinic</h2>
     <p class="mb-4">A peek at our facilities and care spaces.</p>
@@ -26,18 +26,11 @@
       </button>
     </div>
 
-    <!-- Grid gallery -->
-    <!--<div class="row g-3 gallery-grid">
-      <div class="col-6 col-md-4" *ngFor="let img of images">
-        <div class="card gallery-card" (click)="open(img)" role="button" tabindex="0" (keyup.enter)="open(img)">
-          <img [src]="img.src" [alt]="img.alt" class="card-img-top" loading="lazy" />
-        </div>
-      </div>
-    </div>-->
+
 
 
     <!-- Lightbox modal -->
-    <!-- <div class="gallery-lightbox" *ngIf="activeImage" (click)="close()">
+    <div class="gallery-lightbox" *ngIf="activeImage" (click)="close()" role="dialog" aria-label="Image lightbox">
       <div class="lightbox-content" (click)="$event.stopPropagation()">
         <button class="btn-close btn-close-white ms-auto" aria-label="Close" (click)="close()"></button>
         <img [src]="activeImage.src" [alt]="activeImage.alt" class="lightbox-img" />
@@ -46,6 +39,6 @@
           <button class="btn btn-outline-light" (click)="next()">Next</button>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </section>

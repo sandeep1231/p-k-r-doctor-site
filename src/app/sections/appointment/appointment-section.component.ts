@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-appointment-section',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ScrollRevealDirective],
   templateUrl: './appointment-section.component.html',
   styleUrls: ['./appointment-section.component.scss']
 })

@@ -1,6 +1,11 @@
 .blog-card { transition: all .25s ease; }
 .blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
 
+// Dark mode
+:host-context([data-bs-theme="dark"]) {
+  .blog-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+}
+
 /* Playlist fallback wrapper clickable for mobile fallback */
 .playlist-wrapper { cursor: pointer; position: relative; }
 .playlist-wrapper iframe { pointer-events: auto; }

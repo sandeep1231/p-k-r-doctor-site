@@ -13,7 +13,17 @@
 
 /* Carousel styles */
 .gallery-carousel { max-width: 1100px; margin-left: auto; margin-right: auto; }
-.gallery-carousel .carousel-img { height: 660px; object-fit: cover; width: 100%; cursor: zoom-in; }
+.gallery-carousel .carousel-img {
+  height: 660px; object-fit: cover; width: 100%; cursor: zoom-in;
+  transition: transform 8s ease;
+}
+.gallery-carousel .carousel-item.active .carousel-img {
+  animation: kenBurns 8s ease forwards;
+}
+@keyframes kenBurns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
 .gallery-carousel .carousel-caption { text-shadow: none; background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.35)); padding: 12px; }
 
 @media (max-width: 768px) {

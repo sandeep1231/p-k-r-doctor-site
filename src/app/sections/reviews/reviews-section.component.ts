@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ReviewsService, Review as DbReview } from '../../services/reviews.service';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 type Review = { name: string; rating: number; comment: string; date?: string };
 
 @Component({
   selector: 'app-reviews-section',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ScrollRevealDirective],
   templateUrl: './reviews-section.component.html',
   styleUrls: ['./reviews-section.component.scss']
 })

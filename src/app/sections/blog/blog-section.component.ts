@@ -2,11 +2,12 @@ import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild, HostListene
 import { CommonModule } from '@angular/common';
 import { YOUTUBE_PLAYLIST_ID, YOUTUBE_CHANNEL_ID, YOUTUBE_API_KEY } from '../../config/media-info';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ScrollRevealDirective } from '../../directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-blog-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollRevealDirective],
   templateUrl: './blog-section.component.html',
   styleUrls: ['./blog-section.component.scss']
 })

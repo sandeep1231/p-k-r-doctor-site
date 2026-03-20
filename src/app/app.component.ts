@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroSectionComponent } from './sections/hero/hero-section.component';
 import { AboutSectionComponent } from './sections/about/about-section.component';
@@ -14,6 +14,16 @@ import { PoliciesSectionComponent } from './sections/policies/policies-section.c
 import { BlogSectionComponent } from './sections/blog/blog-section.component';
 import { ReviewsSectionComponent } from './sections/reviews/reviews-section.component';
 import { GallerySectionComponent } from './sections/gallery/gallery-section.component';
+import { ChatbotComponent } from './sections/chatbot/chatbot.component';
+import { BackToTopComponent } from './sections/back-to-top/back-to-top.component';
+import { WhatsAppFabComponent } from './sections/whatsapp-fab/whatsapp-fab.component';
+import { ScrollRevealDirective } from './directives/scroll-reveal.directive';
+import { ScrollProgressComponent } from './sections/scroll-progress/scroll-progress.component';
+import { StatsCounterComponent } from './sections/stats-counter/stats-counter.component';
+import { CookieConsentComponent } from './sections/cookie-consent/cookie-consent.component';
+import { DarkModeToggleComponent } from './sections/dark-mode-toggle/dark-mode-toggle.component';
+import { TestimonialTickerComponent } from './sections/testimonial-ticker/testimonial-ticker.component';
+import { SectionDotsComponent } from './sections/section-dots/section-dots.component';
 
 @Component({
   selector: 'app-root',
@@ -33,12 +43,26 @@ import { GallerySectionComponent } from './sections/gallery/gallery-section.comp
     FaqSectionComponent,
     PoliciesSectionComponent,
     BlogSectionComponent,
-    ReviewsSectionComponent
+    ReviewsSectionComponent,
+    ChatbotComponent,
+    BackToTopComponent,
+    WhatsAppFabComponent,
+    ScrollRevealDirective,
+    ScrollProgressComponent,
+    StatsCounterComponent,
+    CookieConsentComponent,
+    DarkModeToggleComponent,
+    TestimonialTickerComponent,
+    SectionDotsComponent
   ],
   template: `
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top shadow-sm">
+    <app-scroll-progress></app-scroll-progress>
+    <app-section-dots></app-section-dots>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top shadow-sm" [class.navbar--hidden]="navbarHidden">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#hero" [class.active]="activeSection==='hero'">Shree Radha Clinic</a>
+        <a class="navbar-brand" href="#hero" [class.active]="activeSection==='hero'">
+          <img src="assets/logo-shree-radha.svg" alt="Shree Radha Clinic" class="navbar-logo" />
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,26 +79,38 @@ import { GallerySectionComponent } from './sections/gallery/gallery-section.comp
             <li class="nav-item"><a class="nav-link" [class.active]="activeSection==='blog'" [attr.aria-current]="activeSection==='blog' ? 'page' : null" href="#blog">Blog</a></li>
             <li class="nav-item"><a class="nav-link" [class.active]="activeSection==='contact'" [attr.aria-current]="activeSection==='contact' ? 'page' : null" href="#contact">Contact</a></li>
           </ul>
+          <app-dark-mode-toggle class="ms-2 d-none d-lg-block"></app-dark-mode-toggle>
+          <app-dark-mode-toggle class="mt-2 mb-1 d-lg-none"></app-dark-mode-toggle>
         </div>
       </div>
     </nav>
 
     <div class="smooth-scroll">
       <app-hero-section></app-hero-section>
+      <div class="section-wave" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60Z" fill="currentColor"/></svg></div>
       <app-about-section></app-about-section>
+      <app-stats-counter></app-stats-counter>
       <app-services-section></app-services-section>
       <app-gallery-section></app-gallery-section>
+      <div class="section-wave section-wave--flip" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60Z" fill="currentColor"/></svg></div>
       <app-conditions-section></app-conditions-section>
       <app-experience-section></app-experience-section>
       <app-clinic-details-section></app-clinic-details-section>
       <app-fees-prep-section></app-fees-prep-section>
+      <div class="section-wave" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60Z" fill="currentColor"/></svg></div>
       <app-appointment-section></app-appointment-section>
       <app-faq-section></app-faq-section>
       <app-policies-section></app-policies-section>
       <app-blog-section></app-blog-section>
       <app-reviews-section></app-reviews-section>
+      <app-testimonial-ticker></app-testimonial-ticker>
       <app-contact-section></app-contact-section>
     </div>
+
+    <app-chatbot></app-chatbot>
+    <app-back-to-top></app-back-to-top>
+    <app-whatsapp-fab></app-whatsapp-fab>
+    <app-cookie-consent></app-cookie-consent>
 
     <footer class="footer mt-5">
       <div class="container text-center small">
@@ -87,6 +123,15 @@ import { GallerySectionComponent } from './sections/gallery/gallery-section.comp
 export class AppComponent implements AfterViewInit {
   year = new Date().getFullYear();
   activeSection = '';
+  navbarHidden = false;
+  private lastScrollY = 0;
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    const sy = window.scrollY;
+    this.navbarHidden = sy > 200 && sy > this.lastScrollY;
+    this.lastScrollY = sy;
+  }
 
   ngAfterViewInit() {
     const sectionIds = [

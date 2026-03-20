@@ -14,3 +14,10 @@
 .rating-breakdown .rating-bar { height: 10px; background: #f1f1f1; border-radius: 6px; overflow: hidden; }
 .rating-breakdown .rating-fill { height: 100%; background: linear-gradient(90deg,#f5b301,#ffb84d); border-radius: 6px 0 0 6px; transition: width .35s ease; }
 .rating-breakdown .badge { min-width: 36px; }
+
+// Dark mode
+:host-context([data-bs-theme="dark"]) {
+  .rating-breakdown .rating-label { color: #dee2e6; }
+  .rating-breakdown .rating-bar { background: #3a3f44; }
+  .reviews-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+}

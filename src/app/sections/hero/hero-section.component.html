@@ -1,10 +1,13 @@
 <section id="hero" class="hero-section">
   <div class="hero-overlay"></div>
-  <div class="container position-relative">
+  <div class="container position-relative hero-entrance">
     <div class="row justify-content-center">
       <div class="col-lg-10 text-center">
-        <h1 class="display-5 fw-bold mb-3">Expert Internal Medicine & Critical Care — Personal Clinic</h1>
-        <p class="lead fw-semibold mb-2">Dr. Pragyan Kumar Routray, MBBS, MD (Medicine), Diploma in Critical Care</p>
+        <h1 class="display-5 fw-bold mb-3 hero-gradient-text">Expert Internal Medicine & Critical Care — Personal Clinic</h1>
+        <span *ngIf="isOpen" class="badge rounded-pill hero-badge bg-success">
+          <span class="status-dot"></span> Clinic Open Now
+        </span>
+        <p class="lead fw-semibold mb-2 mt-2">Dr. Pragyan Kumar Routray, MBBS, MD (Medicine), Diploma in Critical Care</p>
         <p class="fs-5 mb-4">More than 20 years of experience in Internal Medicine, Critical Care, and evidence-based adult healthcare.</p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
           <a href="#appointment" class="btn btn-accent btn-lg shadow">Book Appointment</a>

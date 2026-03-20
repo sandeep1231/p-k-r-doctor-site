@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { initializeApp } from 'firebase/app';
+import { getApp } from 'firebase/app';
 import { getDatabase, ref, push, set, serverTimestamp, query, orderByChild, limitToLast, get } from 'firebase/database';
 
 export type Review = { name: string; rating: number; comment: string; createdAt?: number };
 
 @Injectable({ providedIn: 'root' })
 export class ReviewsService {
-  private app = initializeApp(environment.firebase);
+  private app = getApp();
   private db = getDatabase(this.app);
   private colRef = ref(this.db, 'reviews');
 

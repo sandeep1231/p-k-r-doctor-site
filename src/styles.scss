@@ -1,3 +1,9 @@
+// Self-hosted font
+@import '@fontsource/source-sans-3/300.css';
+@import '@fontsource/source-sans-3/400.css';
+@import '@fontsource/source-sans-3/600.css';
+@import '@fontsource/source-sans-3/700.css';
+
 // Theme Variables
 $primary: #0d6efd;
 $secondary: #495057;
@@ -9,6 +15,10 @@ body {
   font-family: 'Source Sans 3', Arial, sans-serif;
   color: #212529;
 }
+
+/* Navbar brand adjustments */
+.navbar-logo { height: 36px; width: auto; display: inline-block; vertical-align: middle; margin-right: .5rem; transform: translateY(0); }
+.navbar-brand { display: flex; align-items: center; }
 
 .section-title { font-weight: 600; margin-bottom: 1.25rem; position: relative; }
 .section-title::after { content: ''; width: 60px; height: 3px; background: $accent; display: block; margin-top: .5rem; }
@@ -34,4 +44,190 @@ body {
 .btn-accent:hover { background: darken($accent, 6%); color: #fff; }
 
 
+// Scroll-reveal animations
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 // Component-specific styles moved to individual component SCSS files to improve modularity.
+
+// Navbar auto-hide on scroll
+.navbar-custom {
+  transition: transform 0.35s ease;
+}
+.navbar--hidden {
+  transform: translateY(-100%) !important;
+}
+
+// Card stagger reveal (works with scroll-reveal)
+.scroll-reveal .card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.scroll-reveal.revealed .card {
+  opacity: 1;
+  transform: translateY(0);
+}
+@for $i from 1 through 12 {
+  .scroll-reveal.revealed .col-md-6:nth-child(#{$i}) .card,
+  .scroll-reveal.revealed .col-lg-4:nth-child(#{$i}) .card,
+  .scroll-reveal.revealed .col-md-4:nth-child(#{$i}) .card {
+    transition-delay: #{($i - 1) * 0.08}s;
+  }
+}
+
+// Dark mode overrides (Bootstrap 5.3 data-bs-theme)
+[data-bs-theme="dark"] {
+  // Base
+  body { color: #dee2e6; }
+
+  // Navbar
+  .navbar-custom {
+    background: rgba(33,37,41,0.95) !important;
+    .nav-link { color: #ced4da !important; }
+    .nav-link.active { color: #0b8f7b !important; }
+    .navbar-toggler-icon { filter: invert(1); }
+  }
+
+  // Footer
+  .footer { background: #0a0a0a; }
+
+  // Section title underline
+  .section-title { color: #f8f9fa; }
+  .section-title::after { background: #0b8f7b; }
+
+  // Bootstrap utility overrides
+  .bg-white { background-color: #1a1d20 !important; }
+  .bg-light { background-color: #212529 !important; }
+  .text-muted { color: #9ca3af !important; }
+  .text-dark { color: #dee2e6 !important; }
+
+  // Cards
+  .card {
+    background-color: #2b2f33;
+    border-color: #3a3f44;
+    color: #dee2e6;
+  }
+  .card-body { color: #dee2e6; }
+  .card-text { color: #b0b5ba; }
+
+  // Accordion (FAQ)
+  .accordion-item {
+    background-color: #2b2f33;
+    border-color: #3a3f44;
+    color: #dee2e6;
+  }
+  .accordion-button {
+    background-color: #2b2f33;
+    color: #dee2e6;
+    &::after { filter: invert(1); }
+    &:not(.collapsed) {
+      background-color: rgba(11,143,123,0.15);
+      color: #3dd9b6;
+    }
+  }
+  .accordion-body { color: #b0b5ba; }
+
+  // Forms
+  .form-control, .form-select {
+    background-color: #2b2f33;
+    border-color: #3a3f44;
+    color: #dee2e6;
+    &::placeholder { color: #707880; }
+    &:focus { border-color: #0b8f7b; background-color: #2b2f33; color: #dee2e6; }
+  }
+  .form-label { color: #ced4da; }
+
+  // Alerts
+  .alert-warning {
+    background-color: rgba(255,193,7,0.12);
+    border-color: rgba(255,193,7,0.25);
+    color: #ffc107;
+  }
+
+  // Buttons
+  .btn-outline-primary { color: #6ea8fe; border-color: #6ea8fe; }
+  .btn-outline-primary:hover { background: #6ea8fe; color: #212529; }
+  .btn-outline-secondary { color: #9ca3af; border-color: #6c757d; }
+  .btn-outline-secondary:hover { background: #6c757d; color: #fff; }
+  .btn-primary { background: #6ea8fe; border-color: #6ea8fe; color: #212529; }
+  .btn-success { background: #198754; border-color: #198754; }
+
+  // About section
+  .about-section-modern {
+    background: linear-gradient(180deg, #1a1d20 0%, #212529 100%) !important;
+  }
+  .vision-box {
+    background: #2b2f33 !important;
+    border-color: #3a3f44 !important;
+    color: #dee2e6;
+  }
+  .qualifications-card { color: #dee2e6; }
+  .doctor-photo-frame { background: #2b2f33; }
+
+  // Experience / Appointment / Policies info panels
+  .shadow-sm { --bs-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.3) !important; }
+
+  // Reviews
+  .rating-breakdown .rating-label { color: #dee2e6 !important; }
+  .rating-breakdown .rating-bar { background: #3a3f44; }
+  .badge.bg-light { background-color: #3a3f44 !important; color: #dee2e6 !important; }
+  .reviews-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+
+  // Blog
+  .blog-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+
+  // Gallery lightbox
+  .gallery-lightbox { background: rgba(0,0,0,0.88); }
+
+  // Badges
+  .badge.bg-secondary { background-color: #495057 !important; }
+
+  // Links
+  a { color: #6ea8fe; }
+  a:hover { color: #9ec5fe; }
+  .stretched-link { color: #6ea8fe; }
+
+  // Map / iframe borders
+  .border { border-color: #3a3f44 !important; }
+
+  // Section-specific hardcoded bg overrides
+  section.py-5 { color: #dee2e6; }
+  h5, h6 { color: #f0f0f0; }
+
+  // Misc
+  .small, small { color: #b0b5ba; }
+  strong, .fw-semibold, .fw-bold { color: #f0f0f0; }
+  p { color: #c9cdd1; }
+  li { color: #c9cdd1; }
+
+  // Wave divider color in dark mode
+  .section-wave { color: #212529; }
+}
+
+// --- Wavy section dividers ---
+.section-wave {
+  color: #f8f9fa;
+  margin-top: -2px;
+  line-height: 0;
+  svg { width: 100%; height: 40px; display: block; }
+}
+.section-wave--flip { transform: scaleY(-1); margin-bottom: -2px; margin-top: 0; }
+
+// --- Print stylesheet ---
+@media print {
+  app-chatbot, app-back-to-top, app-whatsapp-fab, app-cookie-consent,
+  app-scroll-progress, app-section-dots, app-dark-mode-toggle,
+  .navbar-custom, .footer { display: none !important; }
+  body { background: #fff !important; color: #000 !important; font-size: 12pt; }
+  .card { break-inside: avoid; border: 1px solid #ccc !important; box-shadow: none !important; }
+  a[href]::after { content: ' (' attr(href) ')'; font-size: 0.8em; color: #555; }
+  .hero-section { background: #0b8f7b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
