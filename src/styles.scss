@@ -18,7 +18,7 @@ body {
 
 /* Navbar brand adjustments */
 .navbar-logo { height: 36px; width: auto; display: inline-block; vertical-align: middle; margin-right: .5rem; transform: translateY(0); }
-.navbar-brand { display: flex; align-items: center; }
+.navbar-brand { display: flex; align-items: center; flex-shrink: 1; min-width: 0; overflow: hidden; }
 
 .section-title { font-weight: 600; margin-bottom: 1.25rem; position: relative; }
 .section-title::after { content: ''; width: 60px; height: 3px; background: $accent; display: block; margin-top: .5rem; }
@@ -43,7 +43,13 @@ body {
     padding: 0.25rem 0.7rem !important;
     margin-left: auto;
     margin-right: 0.5rem;
+    white-space: nowrap;
   }
+}
+@media (max-width: 400px) {
+  .navbar-logo { height: 28px; margin-right: 0.25rem; }
+  .nav-link-review--mobile { font-size: 0.7rem; padding: 0.2rem 0.5rem !important; margin-right: 0.25rem; }
+  .navbar-toggler { padding: 0.2rem 0.4rem; font-size: 0.85rem; }
 }
 
 .footer { background: #111; color: #ced4da; padding: 2rem 0; }
