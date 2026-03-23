@@ -25,16 +25,14 @@ export class ContactSectionComponent {
 
   async shareQR() {
     try {
-      const res = await fetch('assets/qr-code.svg');
-      const blob = await res.blob();
-      const file = new File([blob], 'Shree-Radha-Clinic-QR.svg', { type: 'image/svg+xml' });
+      const png = await this.svgToPng('assets/qr-code.svg', 512);
+      const file = new File([png], 'Shree-Radha-Clinic-QR.png', { type: 'image/png' });
       await navigator.share({
         title: 'Shree Radha Clinic QR Code',
         text: 'Scan this QR code to visit Dr. Pragyan Kumar Routray\'s clinic website.',
         files: [file]
       });
     } catch {
-      // Fallback: share URL if file sharing not supported
       try {
         await navigator.share({
           title: 'Shree Radha Clinic',
@@ -44,6 +42,25 @@ export class ContactSectionComponent {
       } catch {}
     }
   }
+
+  private svgToPng(url: string, size: number): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d')!;
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, size, size);
+        ctx.drawImage(img, 0, 0, size, size);
+        canvas.toBlob(blob => blob ? resolve(blob) : reject(), 'image/png');
+      };
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+
   clinicPlaceId = CLINIC_PLACE_ID;
   get hasRealPlaceId(): boolean {
     return !!this.clinicPlaceId && this.clinicPlaceId !== 'PLACE_ID_REPLACE';
